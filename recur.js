@@ -5,25 +5,10 @@ const delay = (time, a) => new Promise((resolve) => setTimeout(() => resolve(a),
 const cancel = (id) => Promise.resolve(`${id}: cancelled`);
 
 const job = async () => {
-  //   return Promise.all(
-  //     go(
-  //       delay(1000, [1, 2, 3, 4, 5]),
-  //       L.map((a) => a + 1),
-  //       [Promise.resolve(1), Promise.resolve(2)],
-  //     ),
-  //   );
-
-  //   return Promise.all(
-  //     go(
-  //       delay(1000, [1, 2, 3, 4, 5]),
-  //       L.map((a) => a + 1),
-  //       takeAll,
-  //     ),
-  //   );
-
+  const delayed = await delay(1000, [1, 2, 3, 4, 5]);
   return Promise.all(
     go(
-      delay(1000, [1, 2, 3, 4, 5]),
+      delayed,
       L.map((a) => a + 1),
       takeAll,
       tap(log),
