@@ -1,4 +1,4 @@
-const { unique, uniqueBy, go } = require('fxjs');
+const { unique, uniqueBy, go, pipe } = require('fxjs');
 const L = require('fxjs/Lazy');
 
 const keywords = [
@@ -18,13 +18,12 @@ const keywords = [
 
 const makeSet = (arr) => new Set(arr);
 
-const uniqueKeywords = go(
-  keywords,
+const uniqueKeywords = pipe(
   L.map(({ keyword_name }) => keyword_name),
   makeSet,
 );
 
-console.log(uniqueKeywords);
+console.log(go(keywords, uniqueKeywords));
 // const k = 'asd';
 // const kk = 'cool';
 
