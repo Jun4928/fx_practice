@@ -9,6 +9,7 @@ const {
   map,
   pipe,
   reduce,
+  sortBy,
   sortByDesc,
   sumBy,
   merge,
@@ -17,6 +18,7 @@ const {
   union,
   flat,
 } = require('fxjs');
+const L = require('fxjs/Lazy');
 
 const stats = [
   {
@@ -47,30 +49,27 @@ const stats = [
   {
     keyword_name: 'c',
     cnt: 66,
-    price: 20,
+    price: 100,
   },
 ];
+
+const sumOfNumberProperties = reduce(
+  (acc, keyword) => (
+    go(
+      keyword,
+      entries,
+      each(([k, v]) => (acc[k] = typeof v === 'number' ? acc[k] + v : acc[k])),
+    ),
+    acc
+  ),
+);
 
 const group = go(
   stats,
   groupBy(({ keyword_name }) => keyword_name),
-  entries,
-  map(([k, keywordStats]) =>
-    go(
-      keywordStats,
-      reduce(
-        (acc, keyword) => (
-          go(
-            keyword,
-            entries,
-            each(([k, v]) => (acc[k] = typeof v === 'number' ? acc[k] + v : acc[k])),
-          ),
-          acc
-        ),
-      ),
-    ),
-  ),
-  sortByDesc(({ cnt, price }) => [cnt, price]),
+  L.values,
+  L.map(sumOfNumberProperties),
+  sortByDesc(['cnt', 'price']),
 );
 
 const nonAdStats = [1, 2, 3];
