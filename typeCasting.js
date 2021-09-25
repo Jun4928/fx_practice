@@ -1,4 +1,4 @@
-const { go, tap, log, pipe, map, curryN, entries, object } = require('fxjs')
+const { go, log, map, object } = require('fxjs')
 const L = require('fxjs/Lazy')
 
 const typeCasting = curryN(2, (target, type, obj) =>
