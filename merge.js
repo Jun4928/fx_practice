@@ -35,7 +35,7 @@ const merge = curry(({ target, joinKey }, arr) => {
 
   return go(
     arr,
-    map(a => extend(a, targetObj[a[joinKey]]))
+    map(el => extend(el, targetObj[el[joinKey]]))
   )
 })
 
