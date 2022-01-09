@@ -1,4 +1,4 @@
-const { go, values, entries, reduce, map, curry, sortByDesc, sortBy, sort, sortDesc } = require('fxjs');
+const { go, values, entries, reduce, each, map, curry, sortByDesc, sortBy, sort, sortDesc } = require('fxjs');
 const L = require('fxjs/Lazy');
 
 const log = console.log;

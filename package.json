@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dayjs": "^1.10.7",
     "fxjs": "^0.21.2",
     "moment": "^2.29.1"
   }
